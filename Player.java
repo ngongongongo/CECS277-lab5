@@ -27,8 +27,6 @@ public class Player {
         points = 0;
     }
 
-    
-
     /** 
      * Sort the value of dices in ascending order
      */
@@ -46,7 +44,7 @@ public class Player {
         }
     }
 
-    /** 
+     /** 
      * Check if the three dices have the same value
      * 
      * @return boolean - true if they are the same, false otherwise
@@ -72,7 +70,7 @@ public class Player {
         boolean die1ToDie2 = dices[0].equals(dices[1].getDieValue());
         boolean die2ToDie3 = dices[1].equals(dices[2].getDieValue());
         boolean die1ToDie3 = dices[0].equals(dices[2].getDieValue());
-        if (die1ToDie2 || die2ToDie3 || die1ToDie3){
+        if (die1ToDie2 || die2ToDie3 || die1ToDie3){          
             points += 1;
             return true;
         }else {
@@ -94,19 +92,6 @@ public class Player {
         }
     }
 
-    /** 
-     * Value of every dice in String
-     * 
-     * @return String - dice's value
-     */
-    public String toString(){
-        String diceName = "";
-        for (int i = 0; i < dices.length; i++){
-            diceName = diceName + "D" + (i+1) + ": " + dices[i] + " ";
-        }
-        return diceName;
-    }
-
     /**
      * Archive player's points
      * 
@@ -116,7 +101,45 @@ public class Player {
         return points;
     }
 
+    /** 
+     * Value of every dice in String
+     * 
+     * @return String - dice's value
+     */
+    public String toString(){
+        String diceVal = "";
+        for (int i = 0; i < dices.length; i++){
+            diceVal = diceVal + "D" + (i+1) + ": " + dices[i] + " ";
+        }
+        return diceVal;
+    }
 
+    /**
+     * Rolls three dices 
+     * Print out the result associates to a spoecific winning condition
+     */
+    public void takeTurn(){
+        for (int i = 0; i < dices.length; i++) {
+            dices[i].roll();
+        }
+        
+        System.out.print("Rolling Dice..." + toString());
 
-
+        if (twoOfaKind()){
+            System.out.println("You got a pair!");
+            System.out.println("Score = " + points + " points");
+        }
+        else if(threeOfaKind()){
+            System.out.println("You got three of a kind!");
+            System.out.println("Score = " + points + " points");
+        }
+        else if(series()){
+            System.out.println("You got a series of 3!");
+            System.out.println("Score = " + points + " points");
+        }
+        else{
+            System.out.println("Awww. Too Bad.");
+            System.out.println("Score = " + points + " points");
+        }
+    }
 }
