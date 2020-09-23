@@ -1,13 +1,21 @@
-/** Player class - player representation */
+/** 
+ * Player class - player representation 
+*/
 public class Player {
     
-    /** A set of dice(s) will be played by the player */
+    /** 
+     * A set of dice(s) will be played by the player 
+    */
     private Die[] dices;
 
-    /** Point(s) that the player will get after rolling the dice(s) */
+    /** 
+     * Point(s) that the player will get after rolling the dice(s) 
+    */
     private int points;
     
-    /** Constructor - Create a play with 3 dices and 0 points */
+    /** 
+     * Constructor - Create a play with 3 dices and 0 points 
+    */
     public Player(){
         final int noOfDices = 3;
         dices = new Die[noOfDices];
@@ -21,7 +29,9 @@ public class Player {
 
     
 
-    /** Sort the value of dices in ascending order */
+    /** 
+     * Sort the value of dices in ascending order
+     */
     public void sort(){
         for (int i = 0; i < dices.length; i++){
             int min = i;
@@ -36,7 +46,9 @@ public class Player {
         }
     }
 
-    /** Check if the three dices have the same value
+    /** 
+     * Check if the three dices have the same value
+     * 
      * @return boolean - true if they are the same, false otherwise
      */
 
@@ -51,7 +63,9 @@ public class Player {
         }
     }
 
-    /** Check if any two dices have the same value
+    /** 
+     * Check if any two dices have the same value
+     * 
      * @return boolean - true if any two dices' value are the same, false otherwise
      */
     public boolean twoOfaKind(){
@@ -65,8 +79,24 @@ public class Player {
             return false;
         }
     }
+    /**
+     * Check if the results are in a series
+     * 
+     * @return boolean - true if the dices' values are in a series
+     */
+    public boolean series(){
+        sort();
+        if ((dices[1].getDieValue() - dices[0].getDieValue() == 1) && (dices[2].getDieValue() - dices[0].getDieValue() == 2)){
+            points += 2;
+            return true;
+        }else{
+            return false;
+        }
+    }
 
-    /** Value of every dice in String
+    /** 
+     * Value of every dice in String
+     * 
      * @return String - dice's value
      */
     public String toString(){
@@ -77,7 +107,9 @@ public class Player {
         return diceName;
     }
 
-    /**Archive player's points
+    /**
+     * Archive player's points
+     * 
      * @return int - player's points
      */
     public int getPoints(){
