@@ -26,24 +26,49 @@ public class Die {
     }
 
     /** Roll the die
-     * @return int
+     * @return int - value of the face-up side of the die aftering being rolled
      */
     public int roll(){
         dieValue = (int)(Math.random() * sides) + 1;
         return dieValue;
     }
 
+    /** Get the value of the die
+     * @return int - get the value of the face-up side of the die
+    */
     public int getdieValue(){
         return dieValue;
     }
 
+    /** Check if the value of the die exceed the number of sides
+     * Make sure that the value of the die cannot reach 0
+     * @param value - value of the face-up side of the die
+     * @return boolean - true if the value is within the sides limit
+     */
     public boolean setDieValue(int value){
         return (value > 0  && value <= sides);
-        
     }
 
+    /** Die's name
+     * @return String - name of the die
+     */
     public String toString(){
         return "" + dieValue;
     }
 
+    /** Check if the value of the face-up side of the die is equal to the given value
+     * @param value - given value to compare to the dieValue
+     * @return boolean - true if equal, false otherwise
+     */
+    public boolean equals(int value){
+        return dieValue == value;
+    }
+
+    /** Check if the value of the face-up side of the die is smaller than the given value
+     * @param value - given value to compare to the dieValue
+     * @return boolean - true if less than, false otherwise
+     */
+    public boolean lessThan(int value){
+        return dieValue < value;
+    }
 }
